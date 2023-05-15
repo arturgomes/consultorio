@@ -7,7 +7,7 @@ import { Box } from '@mui/system';
 import { addMinutes, setHours, setMinutes } from 'date-fns';
 
 const ScheduleAppointment: React.FC = () => {
-  const { doctors, scheduleAppointment } = useContext(DoctorContext);
+  const { doctors, scheduleAppointment, appointments } = useContext(DoctorContext);
   const [date, setDate] = useState('');
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -26,7 +26,7 @@ const ScheduleAppointment: React.FC = () => {
     const dateWithTime = setMinutes(setHours(localDate, Number(hours)), Number(minutes));
     const offset = dateWithTime.getTimezoneOffset();
     const utcDate = addMinutes(dateWithTime, offset).toISOString();
-    scheduleAppointment!({ date: utcDate, name, phoneNumber, doctorEmail });
+    scheduleAppointment!({ id: appointments.length, date: utcDate, name, phoneNumber, doctorEmail });
     setDate('');
     setName('');
     setPhoneNumber('');
