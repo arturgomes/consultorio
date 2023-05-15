@@ -5,6 +5,7 @@ export interface Doctor {
 }
 
 export interface Appointment {
+  id: number;
   date: string;
   name: string;
   phoneNumber: string;

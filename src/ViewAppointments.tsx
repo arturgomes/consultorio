@@ -2,7 +2,8 @@
 import React, { useContext, useState } from 'react';
 import { DoctorContext } from './DoctorContext';
 import { Appointment } from './types';
-import { Card, Container, Tabs, Tab, Box, Typography, Select, MenuItem } from '@mui/material';
+import { Card, Container, Tabs, Tab, Box, Select, MenuItem } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 import { startOfDay, endOfDay, isWithinInterval } from 'date-fns';
 
 const ViewAppointments: React.FC = () => {
@@ -35,6 +36,14 @@ const ViewAppointments: React.FC = () => {
       break;
   }
 
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'name', headerName: 'Nome', width: 130 },
+    { field: 'date', headerName: 'Data', width: 130, valueFormatter: ({ value }) => new Date(value as string).toLocaleString('pt-BR', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) },
+    { field: 'phoneNumber', headerName: 'Telefone', width: 130 },
+    { field: 'doctorEmail', headerName: 'Médico', width: 130 },
+  ];
+
   return (
     <Container maxWidth="sm">
       <Box
@@ -63,18 +72,8 @@ const ViewAppointments: React.FC = () => {
               ))}
             </Select>
           )}
-          <Box sx={{ mt: 2 }}>
-            {filteredAppointments.map((appointment, index) => (
-              <Box key={index}>
-                <Typography variant="h6">{appointment.name}</Typography>
-                <Typography variant="subtitle1">
-                  Data: {new Date(appointment.date).toLocaleString('pt-BR', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
-
-                </Typography>
-                <Typography variant="subtitle1">Telefone: {appointment.phoneNumber}</Typography>
-                <Typography variant="subtitle1">Médico: {appointment.doctorEmail}</Typography>
-              </Box>
-            ))}
+          <Box sx={{ mt: 2, height: 400, width: '100%' }}>
+            <DataGrid rows={filteredAppointments} columns={columns} pageSize={5} />
           </Box>
         </Card>
       </Box>
