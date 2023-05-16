@@ -1,7 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
 
-
-const ListagemAgendamentos = () => {
+const ViewAppointments = () => {
 
 
   return (
@@ -9,4 +7,4 @@ const ListagemAgendamentos = () => {
   );
 };
 
-export default ListagemAgendamentos;
+export default ViewAppointments;

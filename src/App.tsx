@@ -1,13 +1,20 @@
-import { Link as RouterLink, BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { Button } from '@mui/material';
-import CadastroMedicos from './components/CadastroMedicos';
-import Agendamento from './components/Agendamento';
-import ListagemAgendamentos from './components/ListagemAgendamentos';
+// src/App.tsx
+import { BrowserRouter, Route, Routes, Link as RouterLink } from 'react-router-dom';
+import { Button, Box } from '@mui/material';
+import RegisterDoctor from './components/CadastroMedicos';
+import ScheduleAppointment from './components/Agendamento';
+import ViewAppointments from './components/ListagemAgendamentos';
 
 function App() {
   return (
-    <Router>
-      <Routes>
+    <BrowserRouter>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        style={{ minHeight: '100vh', textAlign: 'center' }}
+      >
         <nav>
           <Button component={RouterLink} to="/register" variant="contained" color="primary" style={{ marginRight: '10px' }}>
             Registrar Médico
@@ -19,15 +26,13 @@ function App() {
             Listar Consultas
           </Button>
         </nav>
-        <Route path="/cadastro-medicos" element={<CadastroMedicos />} />
-        <Route path="/agendamento" element={<Agendamento />} />
-        <Route path="/listagem-agendamentos" element={<ListagemAgendamentos />} />
-        <Route path="*" element={<Navigate to="/agendamento" replace />} />
-
-
-      </Routes>
-    </Router>
-
+        <Routes>
+          <Route path="/register" element={<RegisterDoctor />} />
+          <Route path="/schedule" element={<ScheduleAppointment />} />
+          <Route path="/view" element={<ViewAppointments />} />
+        </Routes>
+      </Box>
+    </BrowserRouter>
   );
 }
 

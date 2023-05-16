@@ -1,5 +1,5 @@
 
-const CadastroMedicos = () => {
+const RegisterDoctor = () => {
 
 
   return (
@@ -7,4 +7,4 @@ const CadastroMedicos = () => {
   );
 };
 
-export default CadastroMedicos;
+export default RegisterDoctor;

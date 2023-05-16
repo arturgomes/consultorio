@@ -1,9 +1,8 @@
-const Agendamento = () => {
-
+const ScheduleAppointment = () => {
 
   return (
     <p>Agendamento</p>
   );
 };
 
-export default Agendamento;
+export default ScheduleAppointment;
